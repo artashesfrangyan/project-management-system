@@ -1,12 +1,4 @@
 services:
-  backend:
-    build: ./server
-    ports:
-      - "8080:8080"
-    volumes:
-      - db_data:/app/database.db
-    environment:
-      - DB_PATH=/app/database.db
 
   frontend:
     build: ./client
