@@ -1,18 +1,22 @@
 import React from 'react';
 import { AppBar, Toolbar, Button, Box, Link } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link as RouterLink } from 'react-router-dom';
 import TaskForm from './TaskForm';
 import { useModal } from 'mui-modal-provider';
 
+
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const { showModal } = useModal();
 
   return (
     <AppBar position="static">
       <Toolbar>
         <Link
-            href="/issues"
+            component={RouterLink}
+            to="/issues"
             color="inherit"
             onClick={() => navigate('/issues')}
             style={{
@@ -25,7 +29,8 @@ const Header: React.FC = () => {
             Все задачи
             </Link>
         <Link
-          href="/boards"
+          component={RouterLink}
+          to="/boards"
           color="inherit"
           onClick={() => navigate('/boards')}
           style={{

@@ -8,6 +8,7 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
+    open: '/project-management-system/boards/',
     watch: {
       usePolling: true, // Обязательно для работы в Docker
       interval: 1000    // Проверка изменений каждую секунду
