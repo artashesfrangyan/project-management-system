@@ -5,6 +5,13 @@ import App from './App.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store/store.ts';
 
+// SPA redirect handling for GitHub Pages
+const redirect = sessionStorage.redirect;
+delete sessionStorage.redirect;
+if (redirect && redirect !== location.href) {
+  history.replaceState(null, '', redirect);
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
