@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import React, { Suspense, lazy } from 'react';
 import ModalProvider from 'mui-modal-provider';
@@ -28,7 +28,9 @@ const App: React.FC = () => {
         <Header />
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
-            <Route path="/" element={<BoardsPage />} />
+            <Route path="/" element={<Navigate to="/boards" replace />} />
+            
+            <Route path="/boards" element={<BoardsPage />} />
             <Route path="/issues" element={<IssuesPage />} />
             <Route path="/board/:id" element={<BoardPage />} />
           </Routes>
