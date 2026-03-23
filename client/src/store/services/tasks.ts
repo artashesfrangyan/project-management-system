@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQuery } from '../baseQuery';
 import { ITask, ITaskStatus } from '../../types/task';
 import { IBoard } from '../../types/board';
 
 export const tasksApi = createApi({
   reducerPath: 'tasksApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://artashesfrangyan-project-management-system.hf.space/api/v1' }),
+  baseQuery,
   tagTypes: ['Tasks', 'Boards', 'Board'], // Теги для кэширования
   endpoints: (builder) => ({
     // Методы для Tasks
