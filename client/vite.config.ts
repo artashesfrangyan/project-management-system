@@ -5,6 +5,17 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: '/project-management-system/',
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
+          'mui-vendor': ['@mui/material', '@mui/icons-material', '@emotion/react', '@emotion/styled'],
+          'redux-vendor': ['@reduxjs/toolkit', 'react-redux'],
+        },
+      },
+    },
+  },
   server: {
     port: 3000,
     host: true,
