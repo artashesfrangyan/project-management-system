@@ -2,12 +2,12 @@ import { Grid, Card, CardContent, Typography } from '@mui/material';
 import { useCallback, useEffect, useMemo } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { useGetBoardsQuery, useGetBoardTasksQuery, useUpdateTaskStatusMutation } from '../store/services/tasks';
-import { ITask } from '../types/task';
-import TaskColumn from '../components/TaskBoard/TaskColumn';
+import { useGetBoardsQuery, useGetBoardTasksQuery, useUpdateTaskStatusMutation } from '@/store/services/tasks';
+import { ITask } from '@/types/task';
+import TaskColumn from '@/components/TaskBoard/TaskColumn';
 import { useParams } from 'react-router-dom';
-import { IBoard } from '../types/board';
-import { setBoardId } from '../store/slices/boardIdSlice';
+import { IBoard } from '@/types/board';
+import { setBoardId } from '@/store/slices/boardIdSlice';
 import { useDispatch } from 'react-redux';
 
 const STATUSES: ITask['status'][] = ['Backlog', 'InProgress', 'Done'];

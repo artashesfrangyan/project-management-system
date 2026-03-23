@@ -1,44 +1,33 @@
 import React from 'react';
-import { Button, List, ListItem, ListItemText, Container, Box, CircularProgress, Alert } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { List, ListItem, ListItemText, Container, CircularProgress, Alert, Link, Box } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 import { useGetBoardsQuery } from '../store/services/tasks';
+
+const linkStyles = {
+  fontSize: '16px',
+  textDecoration: 'none',
+  '&.active': { color: 'red' },
+};
 
 const BoardsPage: React.FC = () => {
   const { data: boards, isLoading, isError } = useGetBoardsQuery();
-  const navigate = useNavigate();
 
-  if (isLoading) {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          minHeight: '100vh'
-        }}
-      >
-        <CircularProgress data-testid="loading-indicator" />
-      </Box>
-    );
-  }  
-
-  if (isError) {
-    return <Alert severity="error" data-testid="error-message">Произошла ошибка при загрузке досок</Alert>;
-  }
+  if (isLoading) return <Box sx={{ display: 'flex', justifyContent: 'center', mt: 10 }}><CircularProgress /></Box>;
+  if (isError) return <Alert severity="error">Ошибка загрузки</Alert>;
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', width: '100%' }}>
-      <Container maxWidth="lg" sx={{ flexGrow: 1, paddingTop: '20px', width: '100%' }}>
-        <List sx={{ width: '100%', padding: '20px' }}>
-          {boards?.map((board) => (
-            <ListItem key={board.id}>
-            <ListItemText primary={board.name} />
-            <Button href={`/board/${board.id}`} onClick={() => navigate(`/board/${board.id}`)}>Перейти к доске</Button>
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <List>
+        {boards?.map(({ id, name }) => (
+          <ListItem key={id} divider sx={{ justifyContent: 'space-between' }}>
+            <ListItemText primary={name} />
+            <Link component={NavLink} to={`/board/${id}`} sx={linkStyles}>
+              Перейти к доске
+            </Link>
           </ListItem>
-          ))}
-        </List>
-      </Container>
-    </Box>
+        ))}
+      </List>
+    </Container>
   );
 };
 

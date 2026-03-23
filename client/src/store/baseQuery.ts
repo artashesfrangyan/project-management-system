@@ -47,6 +47,7 @@ export const baseQuery: BaseQueryFn<
 
     if (resource === 'users' && method === 'GET') {
       const data = await dbService.getUsers();
+      console.log('Users from DB:', data);
       return { data: { data } };
     }
 

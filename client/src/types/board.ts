@@ -8,4 +8,7 @@ export interface IBoard {
 export interface IBoardContext {
     boardId: number;
     setBoardId: (id: number) => void;
-};
+}
+
+export type CreateBoardData = Partial<IBoard> & Pick<IBoard, 'name' | 'description' | 'taskCount'>;
+export type UpdateBoardData = Partial<IBoard> & { id: number };

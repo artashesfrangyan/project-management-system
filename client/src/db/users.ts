@@ -1,4 +1,4 @@
-import { IUser } from '../types/users';
+import { IUser, CreateUserData } from '../types/users';
 
 export const getUsers = (db: IDBDatabase): Promise<IUser[]> => {
   return new Promise((resolve, reject) => {
@@ -11,7 +11,7 @@ export const getUsers = (db: IDBDatabase): Promise<IUser[]> => {
   });
 };
 
-export const createUser = (db: IDBDatabase, user: Partial<IUser>): Promise<IUser> => {
+export const createUser = (db: IDBDatabase, user: CreateUserData): Promise<IUser> => {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction('users', 'readwrite');
     const store = transaction.objectStore('users');

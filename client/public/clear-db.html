@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clear IndexedDB</title>
+</head>
+<body>
+  <h1>Clear Database</h1>
+  <button onclick="clearDB()">Clear IndexedDB</button>
+  <div id="result"></div>
+  
+  <script>
+    function clearDB() {
+      const request = indexedDB.deleteDatabase('ProjectManagementDB');
+      request.onsuccess = () => {
+        document.getElementById('result').innerHTML = '<p style="color: green;">Database cleared successfully! Reload the main app.</p>';
+      };
+      request.onerror = () => {
+        document.getElementById('result').innerHTML = '<p style="color: red;">Error clearing database</p>';
+      };
+    }
+  </script>
+</body>
+</html>

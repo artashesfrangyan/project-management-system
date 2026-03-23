@@ -4,10 +4,6 @@ import './index.css'
 import App from './App.tsx'
 import { Provider } from 'react-redux'
 import { store } from './store/store.ts';
-import { dbService } from './db/indexedDB.ts';
-
-// Initialize IndexedDB and seed data
-dbService.init().then(() => dbService.seedData());
 
 // SPA redirect handling for GitHub Pages
 const redirect = sessionStorage.redirect;

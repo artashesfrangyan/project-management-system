@@ -19,3 +19,6 @@ export interface ITask {
   boardId: number;
   assigneeId: number;
 }
+
+export type CreateTaskData = Partial<ITask> & Pick<ITask, 'title' | 'description' | 'priority' | 'status' | 'assignee' | 'boardName' | 'boardId' | 'assigneeId'>;
+export type UpdateTaskData = Partial<ITask> & { id: number };

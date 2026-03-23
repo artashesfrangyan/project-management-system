@@ -3,9 +3,9 @@ import { getTasks, createTask, updateTask, getBoardTasks } from './tasks';
 import { getBoards, createBoard } from './boards';
 import { getUsers, createUser } from './users';
 import { seedData } from './seed';
-import { ITask } from '../types/task';
-import { IBoard } from '../types/board';
-import { IUser } from '../types/users';
+import { CreateTaskData, UpdateTaskData } from '@/types/task';
+import { CreateBoardData } from '@/types/board';
+import { CreateUserData } from '@/types/users';
 
 class IndexedDBService {
   private db: IDBDatabase | null = null;
@@ -24,12 +24,12 @@ class IndexedDBService {
     return getTasks(db);
   }
 
-  async createTask(task: Partial<ITask>) {
+  async createTask(task: CreateTaskData) {
     const db = await this.ensureDB();
     return createTask(db, task);
   }
 
-  async updateTask(task: Partial<ITask>) {
+  async updateTask(task: UpdateTaskData) {
     const db = await this.ensureDB();
     return updateTask(db, task);
   }
@@ -44,7 +44,7 @@ class IndexedDBService {
     return getBoards(db);
   }
 
-  async createBoard(board: Partial<IBoard>) {
+  async createBoard(board: CreateBoardData) {
     const db = await this.ensureDB();
     return createBoard(db, board);
   }
@@ -54,7 +54,7 @@ class IndexedDBService {
     return getUsers(db);
   }
 
-  async createUser(user: Partial<IUser>) {
+  async createUser(user: CreateUserData) {
     const db = await this.ensureDB();
     return createUser(db, user);
   }

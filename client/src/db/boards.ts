@@ -1,4 +1,4 @@
-import { IBoard } from '../types/board';
+import { IBoard, CreateBoardData } from '../types/board';
 
 export const getBoards = (db: IDBDatabase): Promise<IBoard[]> => {
   return new Promise((resolve, reject) => {
@@ -11,7 +11,7 @@ export const getBoards = (db: IDBDatabase): Promise<IBoard[]> => {
   });
 };
 
-export const createBoard = (db: IDBDatabase, board: Partial<IBoard>): Promise<IBoard> => {
+export const createBoard = (db: IDBDatabase, board: CreateBoardData): Promise<IBoard> => {
   return new Promise((resolve, reject) => {
     const transaction = db.transaction('boards', 'readwrite');
     const store = transaction.objectStore('boards');

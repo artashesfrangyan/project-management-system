@@ -1,4 +1,5 @@
-import { ITask } from '../types/task';
+import { ITask, CreateTaskData, UpdateTaskData } from '../types/task';
+import { getUserById } from './users';
 
 export const getTasks = (db: IDBDatabase): Promise<ITask[]> => {
   return new Promise((resolve, reject) => {
@@ -11,35 +12,71 @@ export const getTasks = (db: IDBDatabase): Promise<ITask[]> => {
   });
 };
 
-export const createTask = (db: IDBDatabase, task: Partial<ITask>): Promise<ITask> => {
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction('tasks', 'readwrite');
-    const store = transaction.objectStore('tasks');
-    const request = store.add(task);
+export const createTask = (db: IDBDatabase, task: CreateTaskData): Promise<ITask> => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const assignee = await getUserById(db, task.assigneeId);
+      if (!assignee) {
+        reject(new Error('Assignee not found'));
+        return;
+      }
 
-    request.onsuccess = async () => {
-      const newTask = await getTaskById(db, request.result as number);
-      resolve(newTask!);
-    };
-    request.onerror = () => reject(request.error);
+      const taskToCreate = {
+        ...task,
+        assignee: {
+          id: assignee.id,
+          fullName: assignee.fullName,
+          email: assignee.email,
+          avatarUrl: assignee.avatarUrl
+        }
+      };
+
+      const transaction = db.transaction('tasks', 'readwrite');
+      const store = transaction.objectStore('tasks');
+      const request = store.add(taskToCreate);
+
+      request.onsuccess = async () => {
+        const newTask = await getTaskById(db, request.result as number);
+        resolve(newTask!);
+      };
+      request.onerror = () => reject(request.error);
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 
-export const updateTask = (db: IDBDatabase, task: Partial<ITask>): Promise<ITask> => {
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction('tasks', 'readwrite');
-    const store = transaction.objectStore('tasks');
-    const getRequest = store.get(task.id!);
+export const updateTask = (db: IDBDatabase, task: UpdateTaskData): Promise<ITask> => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const transaction = db.transaction('tasks', 'readwrite');
+      const store = transaction.objectStore('tasks');
+      const getRequest = store.get(task.id!);
 
-    getRequest.onsuccess = () => {
-      const existingTask = getRequest.result;
-      const updatedTask = { ...existingTask, ...task };
-      const putRequest = store.put(updatedTask);
+      getRequest.onsuccess = async () => {
+        const existingTask = getRequest.result;
+        const updatedTask = { ...existingTask, ...task };
 
-      putRequest.onsuccess = () => resolve(updatedTask);
-      putRequest.onerror = () => reject(putRequest.error);
-    };
-    getRequest.onerror = () => reject(getRequest.error);
+        if (task.assigneeId && task.assigneeId !== existingTask.assigneeId) {
+          const assignee = await getUserById(db, task.assigneeId);
+          if (assignee) {
+            updatedTask.assignee = {
+              id: assignee.id,
+              fullName: assignee.fullName,
+              email: assignee.email,
+              avatarUrl: assignee.avatarUrl
+            };
+          }
+        }
+
+        const putRequest = store.put(updatedTask);
+        putRequest.onsuccess = () => resolve(updatedTask);
+        putRequest.onerror = () => reject(putRequest.error);
+      };
+      getRequest.onerror = () => reject(getRequest.error);
+    } catch (error) {
+      reject(error);
+    }
   });
 };
 

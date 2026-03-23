@@ -57,8 +57,8 @@ const generateTasks = (boardName: string, count: number) => {
   return Array.from({ length: count }, (_, i) => ({
     title: titles[i % titles.length],
     description: `Детальное описание задачи ${titles[i % titles.length]}. Требует проработки технических деталей.`,
-    priority: getRandomElement(['Low', 'Medium', 'High']),
-    status: getRandomElement(['Backlog', 'InProgress', 'Done'])
+    priority: getRandomElement(['Low', 'Medium', 'High'] as const),
+    status: getRandomElement(['Backlog', 'InProgress', 'Done'] as const)
   }));
 };
 
@@ -68,6 +68,7 @@ export const seedData = async (db: IDBDatabase): Promise<void> => {
   const tasks = await getTasks(db);
 
   if (users.length === 0) {
+    console.log('Creating users...');
     await createUser(db, { fullName: 'Александра Ветрова', email: 'al.vetrova@avito.ru', avatarUrl: 'https://randomuser.me/api/portraits/women/1.jpg' });
     await createUser(db, { fullName: 'Илья Романов', email: 'il.romanov@avito.ru', avatarUrl: 'https://randomuser.me/api/portraits/men/1.jpg' });
     await createUser(db, { fullName: 'Дмитрий Козлов', email: 'dm.kozlov@avito.ru', avatarUrl: 'https://randomuser.me/api/portraits/men/2.jpg' });
@@ -75,6 +76,7 @@ export const seedData = async (db: IDBDatabase): Promise<void> => {
     await createUser(db, { fullName: 'Артем Белов', email: 'ar.belov@avito.ru', avatarUrl: 'https://randomuser.me/api/portraits/men/3.jpg' });
     await createUser(db, { fullName: 'Ольга Новикова', email: 'ol.novikova@avito.ru', avatarUrl: 'https://randomuser.me/api/portraits/women/3.jpg' });
     await createUser(db, { fullName: 'Максим Орлов', email: 'mx.orlov@avito.ru', avatarUrl: 'https://randomuser.me/api/portraits/men/4.jpg' });
+    console.log('Users created');
   }
 
   if (boards.length === 0) {
