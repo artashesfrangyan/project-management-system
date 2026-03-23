@@ -8,7 +8,7 @@ import ModalProvider from 'mui-modal-provider';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <Router basename="/project-management-system/">
       <ModalProvider>
         <Header />
         <Routes>
