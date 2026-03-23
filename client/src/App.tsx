@@ -12,7 +12,7 @@ const App: React.FC = () => {
       <ModalProvider>
         <Header />
         <Routes>
-          <Route path="/boards" element={<BoardsPage />} />
+          <Route path="/" element={<BoardsPage />} />
           <Route path="/issues" element={<IssuesPage />} />
           <Route path="board/:id" element={<TaskBoard />} />
         </Routes>

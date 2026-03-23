@@ -13,7 +13,7 @@ export default defineConfig({
       interval: 1000    // Проверка изменений каждую секунду
     },
     hmr: {
-      clientPort: 5173  // Порт для WebSocket
+      clientPort: 3000  // Порт для WebSocket
     }
   },
 })

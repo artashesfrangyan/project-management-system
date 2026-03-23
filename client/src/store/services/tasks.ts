@@ -4,7 +4,7 @@ import { IBoard } from '../../types/board';
 
 export const tasksApi = createApi({
   reducerPath: 'tasksApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8080/api/v1' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://artashesfrangyan-project-management-system.hf.space/api/v1' }),
   tagTypes: ['Tasks', 'Boards', 'Board'], // Теги для кэширования
   endpoints: (builder) => ({
     // Методы для Tasks
