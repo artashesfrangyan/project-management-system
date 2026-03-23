@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQuery } from '../baseQuery';
-import { ITask, ITaskStatus } from '../../types/task';
-import { IBoard } from '../../types/board';
+import { baseQuery } from '@/store/baseQuery';
+import { ITask, ITaskStatus } from '@/types/task';
+import { IBoard } from '@/types/board';
 
 export const tasksApi = createApi({
   reducerPath: 'tasksApi',
@@ -11,7 +11,7 @@ export const tasksApi = createApi({
     // Методы для Tasks
 
     getTasks: builder.query<ITask[], void>({
-      query: () => '/tasks',
+      query: () => ({ url: '/tasks' }),
       transformResponse: (response: { data: ITask[] }) => response.data,
       providesTags: ['Tasks'],
     }),
@@ -52,13 +52,13 @@ export const tasksApi = createApi({
     // Методы для работы с Boards
 
     getBoards: builder.query<IBoard[], void>({
-      query: () => '/boards',
+      query: () => ({ url: '/boards' }),
       transformResponse: (response: { data: IBoard[] }) => response.data,
       providesTags: ['Boards'],
     }),
     
     getBoardTasks: builder.query<ITask[], string>({
-      query: (id: string) => `/boards/${id}`,
+      query: (id: string) => ({ url: `/boards/${id}` }),
       providesTags: ['Board'],
       transformResponse: (response: { data: ITask[] }) => response.data,
     })

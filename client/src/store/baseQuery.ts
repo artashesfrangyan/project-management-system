@@ -1,8 +1,9 @@
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
 import { dbService } from '../db/indexedDB';
+import { ITask } from '../types/task';
 
 export const baseQuery: BaseQueryFn<
-  { url: string; method?: string; body?: any },
+  { url: string; method?: string; body?: unknown },
   unknown,
   unknown
 > = async ({ url, method = 'GET', body }) => {
@@ -20,15 +21,15 @@ export const baseQuery: BaseQueryFn<
         return { data: { data } };
       }
       if (action === 'create' && method === 'POST') {
-        const data = await dbService.createTask(body);
+        const data = await dbService.createTask(body as Partial<ITask>);
         return { data };
       }
       if (action === 'update' && method === 'PUT') {
-        const data = await dbService.updateTask({ ...body, id: Number(id) });
+        const data = await dbService.updateTask({ ...(body as Partial<ITask>), id: Number(id) });
         return { data };
       }
       if (action === 'updateStatus' && method === 'PUT') {
-        const data = await dbService.updateTask({ id: Number(id), status: body.status });
+        const data = await dbService.updateTask({ id: Number(id), status: (body as { status: ITask['status'] }).status });
         return { data };
       }
     }
