@@ -62,7 +62,7 @@ export const tasksApi = createApi({
       providesTags: ['Board'],
       transformResponse: (response: { data: ITask[] }) => response.data,
     })
-}),
+  })
 });
 interface IUpdateStatus {
   id: number

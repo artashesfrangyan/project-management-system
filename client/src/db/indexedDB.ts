@@ -11,6 +11,7 @@ class IndexedDBService {
   private db: IDBDatabase | null = null;
 
   async init(): Promise<void> {
+    if (this.db) return;
     this.db = await initDB();
   }
 

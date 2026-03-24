@@ -1,6 +1,6 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '../baseQuery';
-import { IUser } from '../../types/users';
+import { IUser } from '@/types/users';
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
@@ -8,7 +8,7 @@ export const usersApi = createApi({
   tagTypes: ['Users'],  // Теги для кэширования
   endpoints: (builder) => ({
     getUsers: builder.query<IUser[], void>({
-      query: () => '/users',
+      query: () => ({ url: '/users' }),
       transformResponse: (response: { data: IUser[] }) => response.data,
       providesTags: ['Users'],
     })
