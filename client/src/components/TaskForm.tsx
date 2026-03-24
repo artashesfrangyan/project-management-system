@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Select, MenuItem, FormControl, InputLabel, Box, ListItemAvatar, Avatar, ListItemText, DialogProps, SelectChangeEvent } from '@mui/material';
-import { useGetUsersQuery } from '../store/services/users';
-import { useCreateTaskMutation, useGetBoardsQuery, useUpdateTaskMutation } from '../store/services/tasks';
-import { ITask } from '../types/task';
+import { useGetUsersQuery } from '@/store/services/users';
+import { useCreateTaskMutation, useGetBoardsQuery, useUpdateTaskMutation } from '@/store/services/tasks';
+import { ITask } from '@/types/task';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectBoardId } from '../store/slices/boardIdSlice';
+import { selectBoardId } from '@/store/slices/boardIdSlice';
 
 // Ключ для сохранения в localStorage
 const FORM_STORAGE_KEY = 'unsaved_task_form_data';
@@ -57,6 +57,16 @@ const TaskForm: React.FC<Props> = ({ task, onClose, ...props }) => {
   const [updateTask] = useUpdateTaskMutation();
   const { data: users = [], isLoading: isUsersLoading } = useGetUsersQuery();
   const { data: boards = [], isLoading: isBoardsLoading } = useGetBoardsQuery();
+
+  const validBoardId = React.useMemo(() => {
+    if (isBoardsLoading || !boards.length) return '';
+    return boards.find(b => b.id === formValues.boardId) ? formValues.boardId : '';
+  }, [boards, formValues.boardId, isBoardsLoading]);
+
+  const validAssigneeId = React.useMemo(() => {
+    if (isUsersLoading || !users.length) return '';
+    return users.find(u => u.id === formValues.assigneeId) ? formValues.assigneeId : '';
+  }, [users, formValues.assigneeId, isUsersLoading]);
 
   // Управляемый компонент
   const handleChange = (field: keyof ITask) => (
@@ -124,7 +134,7 @@ const TaskForm: React.FC<Props> = ({ task, onClose, ...props }) => {
           <InputLabel id="board-label">Проект *</InputLabel>
           <Select
             labelId="board-label"
-            value={formValues.boardId ?? ''}
+            value={validBoardId}
             onChange={handleChange('boardId')}
             disabled={isBoardsLoading || !!boardId} // Отключаем при загрузке или на странице проекта
             required
@@ -167,7 +177,7 @@ const TaskForm: React.FC<Props> = ({ task, onClose, ...props }) => {
           <InputLabel id="assignee-label">Исполнитель *</InputLabel>
           <Select
             labelId="assignee-label"
-            value={formValues.assigneeId ?? ''}
+            value={validAssigneeId}
             onChange={handleChange('assigneeId')}
             disabled={isUsersLoading}
             required
