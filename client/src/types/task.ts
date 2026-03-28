@@ -18,6 +18,8 @@ export interface ITask {
   boardName: string;
   boardId: number;
   assigneeId: number;
+  createdAt: string;  // ISO 8601 format
+  updatedAt: string;  // ISO 8601 format
 }
 
 export type CreateTaskData = Partial<ITask> & Pick<ITask, 'title' | 'description' | 'priority' | 'status' | 'assignee' | 'boardName' | 'boardId' | 'assigneeId'>;

@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "fullName": "Александра Ветрова",
+      "email": "al.vetrova@avito.ru",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    {
+      "id": 2,
+      "fullName": "Илья Романов",
+      "email": "il.romanov@avito.ru",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+      "id": 3,
+      "fullName": "Дмитрий Козлов",
+      "email": "dm.kozlov@avito.ru",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+      "id": 4,
+      "fullName": "Екатерина Смирнова",
+      "email": "ek.smirnova@avito.ru",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+      "id": 5,
+      "fullName": "Артем Белов",
+      "email": "ar.belov@avito.ru",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+      "id": 6,
+      "fullName": "Ольга Новикова",
+      "email": "ol.novikova@avito.ru",
+      "avatarUrl": "https://randomuser.me/api/portraits/women/3.jpg"
+    },
+    {
+      "id": 7,
+      "fullName": "Максим Орлов",
+      "email": "mx.orlov@avito.ru",
+      "avatarUrl": "https://randomuser.me/api/portraits/men/4.jpg"
+    }
+  ]
+}

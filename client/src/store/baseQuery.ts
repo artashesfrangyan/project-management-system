@@ -1,5 +1,5 @@
 import { BaseQueryFn } from '@reduxjs/toolkit/query/react';
-import { dbService } from '@/db/indexedDB';
+import { dbService } from '@/db/db';
 import { ITask, CreateTaskData, UpdateTaskData } from '@/types/task';
 
 interface BaseQueryArgs {
@@ -19,8 +19,6 @@ export const baseQuery: BaseQueryFn<
   BaseQueryError
 > = async ({ url, method = 'GET', body }) => {
   try {
-    await dbService.init();
-
     const segments = url.split('/').filter(Boolean);
     const [resource, action, id] = segments;
 

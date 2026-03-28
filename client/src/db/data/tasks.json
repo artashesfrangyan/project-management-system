@@ -1,0 +1,340 @@
+{
+  "tasks": [
+    {
+      "boardId": 1,
+      "boardName": "Редизайн карточки товара",
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Реализация новой галереи изображений",
+          "description": "Разработать компонент галереи с поддержкой зума, перелистывания свайпом на мобильных устройствах и ленивой загрузки изображений. Интегрировать с CDN для оптимизации доставки контента.",
+          "priority": "High",
+          "status": "InProgress",
+          "assigneeId": 1,
+          "createdAt": "2026-03-01T09:00:00.000Z",
+          "updatedAt": "2026-03-15T14:30:00.000Z"
+        },
+        {
+          "id": 2,
+          "title": "Адаптация карточки для мобильных устройств",
+          "description": "Оптимизировать вёрстку карточки товара для экранов 320px-768px. Реализовать адаптивные блоки: компактный режим галереи, сворачиваемые секции характеристик, sticky-блок покупки.",
+          "priority": "Medium",
+          "status": "Backlog",
+          "assigneeId": 2,
+          "createdAt": "2026-03-05T10:15:00.000Z",
+          "updatedAt": "2026-03-05T10:15:00.000Z"
+        },
+        {
+          "id": 3,
+          "title": "Оптимизация загрузки медиа-контента",
+          "description": "Внедрить progressive JPEG для превью, WebP как основной формат, responsive images с srcset. Настроить предзагрузку критических изображений через link rel=\"preload\".",
+          "priority": "Medium",
+          "status": "Done",
+          "assigneeId": 3,
+          "createdAt": "2026-03-02T11:00:00.000Z",
+          "updatedAt": "2026-03-12T16:45:00.000Z"
+        },
+        {
+          "id": 4,
+          "title": "Добавление микроанимаций интерфейса",
+          "description": "Проектировать и реализовать анимации: появление элементов при скролле, hover-эффекты на кнопках и карточках, плавные переходы между состояниями формы заказа.",
+          "priority": "Low",
+          "status": "Backlog",
+          "assigneeId": 4,
+          "createdAt": "2026-03-08T09:30:00.000Z",
+          "updatedAt": "2026-03-08T09:30:00.000Z"
+        },
+        {
+          "id": 5,
+          "title": "Интеграция с системой рекомендаций",
+          "description": "Подключить ML-сервис рекомендаций для отображения персонализированного блока \"Похожие товары\". Реализовать fallback на популярные товары при недоступности сервиса.",
+          "priority": "High",
+          "status": "InProgress",
+          "assigneeId": 5,
+          "createdAt": "2026-03-10T14:00:00.000Z",
+          "updatedAt": "2026-03-18T11:20:00.000Z"
+        }
+      ]
+    },
+    {
+      "boardId": 2,
+      "boardName": "Оптимизация производительности",
+      "tasks": [
+        {
+          "id": 6,
+          "title": "Ленивая загрузка изображений",
+          "description": "Внедрить native lazy loading (loading=\"lazy\") для всех изображений ниже fold. Добавить IntersectionObserver-based lazy load для браузеров без нативной поддержки. Покрыть юнит-тестами.",
+          "priority": "High",
+          "status": "Done",
+          "assigneeId": 1,
+          "createdAt": "2026-03-03T08:00:00.000Z",
+          "updatedAt": "2026-03-14T17:00:00.000Z"
+        },
+        {
+          "id": 7,
+          "title": "Оптимизация бандла Webpack",
+          "description": "Провести анализ бандла через webpack-bundle-analyzer, вынести в external крупные библиотеки (moment.js → date-fns), настроить tree-shaking для неиспользуемого кода.",
+          "priority": "Medium",
+          "status": "InProgress",
+          "assigneeId": 2,
+          "createdAt": "2026-03-06T09:45:00.000Z",
+          "updatedAt": "2026-03-16T15:30:00.000Z"
+        },
+        {
+          "id": 8,
+          "title": "Реализация code-splitting",
+          "description": "Разбить приложение на чанки по роутам: отдельные бандлы для списка товаров, карточки, личного кабинета. Использовать React.lazy() + Suspense для динамического импорта.",
+          "priority": "High",
+          "status": "Backlog",
+          "assigneeId": 3,
+          "createdAt": "2026-03-07T10:00:00.000Z",
+          "updatedAt": "2026-03-07T10:00:00.000Z"
+        },
+        {
+          "id": 9,
+          "title": "Оптимизация работы с API",
+          "description": "Внедрить запрос-дедупликацию на уровне клиента, реализовать polling с backoff для long-running операций, добавить request cancellation при unmount компонентов.",
+          "priority": "Medium",
+          "status": "Done",
+          "assigneeId": 4,
+          "createdAt": "2026-03-04T11:30:00.000Z",
+          "updatedAt": "2026-03-13T14:00:00.000Z"
+        },
+        {
+          "id": 10,
+          "title": "Уменьшение времени First Contentful Paint",
+          "description": "Оптимизировать критический CSS, внедрить server-side rendering для key pages, настроить HTTP/2 Push для критических ресурсов. Целевое FCP < 1.5s.",
+          "priority": "High",
+          "status": "InProgress",
+          "assigneeId": 5,
+          "createdAt": "2026-03-09T08:15:00.000Z",
+          "updatedAt": "2026-03-17T12:45:00.000Z"
+        }
+      ]
+    },
+    {
+      "boardId": 3,
+      "boardName": "Рефакторинг API",
+      "tasks": [
+        {
+          "id": 11,
+          "title": "Оптимизация эндпоинта поиска",
+          "description": "Переписать поисковый эндпоинт с использованием Elasticsearch. Реализовать fuzzy search, подсветку совпадений, facets для фильтрации. Обеспечить обратную совместимость.",
+          "priority": "High",
+          "status": "InProgress",
+          "assigneeId": 6,
+          "createdAt": "2026-03-01T10:00:00.000Z",
+          "updatedAt": "2026-03-19T16:00:00.000Z"
+        },
+        {
+          "id": 12,
+          "title": "Реализация кэширования ответов",
+          "description": "Внедрить Redis-кэш для часто запрашиваемых данных: каталог, популярные товары, статический контент. Настроить инвалидацию по TTL и событиям обновления данных.",
+          "priority": "Medium",
+          "status": "Backlog",
+          "assigneeId": 7,
+          "createdAt": "2026-03-11T09:00:00.000Z",
+          "updatedAt": "2026-03-11T09:00:00.000Z"
+        },
+        {
+          "id": 13,
+          "title": "Добавление пагинации в API",
+          "description": "Реализовать cursor-based пагинацию для всех списочных эндпоинтов. Добавить метаданные: totalCount, hasNextPage. Обновить документацию OpenAPI.",
+          "priority": "Medium",
+          "status": "Done",
+          "assigneeId": 1,
+          "createdAt": "2026-03-02T14:30:00.000Z",
+          "updatedAt": "2026-03-10T11:00:00.000Z"
+        },
+        {
+          "id": 14,
+          "title": "Оптимизация запросов к БД",
+          "description": "Провести анализ медленных запросов через EXPLAIN ANALYZE, добавить недостающие индексы, переписать N+1 запросы на batch-загрузку. Покрыть мониторингом query_time.",
+          "priority": "High",
+          "status": "InProgress",
+          "assigneeId": 2,
+          "createdAt": "2026-03-08T11:15:00.000Z",
+          "updatedAt": "2026-03-18T09:30:00.000Z"
+        },
+        {
+          "id": 15,
+          "title": "Рефакторинг системы авторизации",
+          "description": "Мигрировать на JWT с refresh token rotation, реализовать rate limiting на эндпоинты auth, добавить поддержку OAuth2 (Google, Apple). Обновить Security.md.",
+          "priority": "High",
+          "status": "Backlog",
+          "assigneeId": 3,
+          "createdAt": "2026-03-12T08:45:00.000Z",
+          "updatedAt": "2026-03-12T08:45:00.000Z"
+        }
+      ]
+    },
+    {
+      "boardId": 4,
+      "boardName": "Миграция на новую БД",
+      "tasks": [
+        {
+          "id": 16,
+          "title": "Создание скриптов миграции",
+          "description": "Разработать поэтапные миграции: DDL для схемы, DML для переноса данных, скрипты валидации. Настроить rollback-процедуры для каждого этапа миграции.",
+          "priority": "High",
+          "status": "Done",
+          "assigneeId": 4,
+          "createdAt": "2026-02-25T09:00:00.000Z",
+          "updatedAt": "2026-03-05T15:00:00.000Z"
+        },
+        {
+          "id": 17,
+          "title": "Оптимизация индексов",
+          "description": "Проанализировать query patterns, создать составные индексы для частых запросов, настроить partial indexes для оптимизации размера. Задокументировать стратегию индексации.",
+          "priority": "Medium",
+          "status": "InProgress",
+          "assigneeId": 5,
+          "createdAt": "2026-03-06T10:30:00.000Z",
+          "updatedAt": "2026-03-16T14:15:00.000Z"
+        },
+        {
+          "id": 18,
+          "title": "Настройка репликации",
+          "description": "Развернуть read-replicas для распределения нагрузки на чтение, настроить streaming replication с synchronous_commit=remote_write. Реализовать automatic failover.",
+          "priority": "High",
+          "status": "Backlog",
+          "assigneeId": 6,
+          "createdAt": "2026-03-10T11:00:00.000Z",
+          "updatedAt": "2026-03-10T11:00:00.000Z"
+        },
+        {
+          "id": 19,
+          "title": "Реализация резервного копирования",
+          "description": "Настроить PITR-бэкапы через pg_basebackup + WAL archiving в S3. Реализовать ежедневные full backup + непрерывный WAL shipping. Протестировать процедуру восстановления.",
+          "priority": "High",
+          "status": "InProgress",
+          "assigneeId": 7,
+          "createdAt": "2026-03-07T08:00:00.000Z",
+          "updatedAt": "2026-03-17T10:30:00.000Z"
+        },
+        {
+          "id": 20,
+          "title": "Профилирование запросов",
+          "description": "Настроить pg_stat_statements, создать дашборды в Grafana для мониторинга query performance, настроить алерты на long-running queries (>5s).",
+          "priority": "Low",
+          "status": "Done",
+          "assigneeId": 1,
+          "createdAt": "2026-03-03T14:00:00.000Z",
+          "updatedAt": "2026-03-11T16:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "boardId": 5,
+      "boardName": "Автоматизация тестирования",
+      "tasks": [
+        {
+          "id": 21,
+          "title": "Написание E2E тестов для основного флоу",
+          "description": "Покрыть Playwright-тестами критические сценарии: регистрация, поиск, покупка, оплата. Реализовать page objects, настроить parallel execution, интегрировать с Allure reporting.",
+          "priority": "High",
+          "status": "InProgress",
+          "assigneeId": 2,
+          "createdAt": "2026-03-04T09:30:00.000Z",
+          "updatedAt": "2026-03-18T11:00:00.000Z"
+        },
+        {
+          "id": 22,
+          "title": "Интеграция с CI/CD",
+          "description": "Настроить пайплайны GitHub Actions: unit tests на каждый PR, integration tests на merge в main, full E2E suite nightly. Добавить gates по покрытию кода (target: 80%).",
+          "priority": "Medium",
+          "status": "Done",
+          "assigneeId": 3,
+          "createdAt": "2026-02-28T10:00:00.000Z",
+          "updatedAt": "2026-03-08T15:30:00.000Z"
+        },
+        {
+          "id": 23,
+          "title": "Реализация тестов API",
+          "description": "Разработать контрактные тесты через Pact, нагрузочные тесты через k6 (ramping to 1000 RPS), интеграционные тесты с testcontainers для изоляции.",
+          "priority": "Medium",
+          "status": "Backlog",
+          "assigneeId": 4,
+          "createdAt": "2026-03-09T11:15:00.000Z",
+          "updatedAt": "2026-03-09T11:15:00.000Z"
+        },
+        {
+          "id": 24,
+          "title": "Создание тестов производительности",
+          "description": "Настроить Lighthouse CI для отслеживания Core Web Vitals, создать сценарии нагрузочного тестирования через Artillery, интегрировать результаты в PR comments.",
+          "priority": "Low",
+          "status": "InProgress",
+          "assigneeId": 5,
+          "createdAt": "2026-03-11T08:45:00.000Z",
+          "updatedAt": "2026-03-19T14:00:00.000Z"
+        },
+        {
+          "id": 25,
+          "title": "Настройка алертов для тестов",
+          "description": "Интегрировать уведомления о падении тестов в Slack/Telegram, настроить дедупликацию алертов, реализовать auto-link с Jira для создания баг-репортов.",
+          "priority": "Low",
+          "status": "Backlog",
+          "assigneeId": 6,
+          "createdAt": "2026-03-14T09:00:00.000Z",
+          "updatedAt": "2026-03-14T09:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "boardId": 6,
+      "boardName": "Переход на Kubernetes",
+      "tasks": [
+        {
+          "id": 26,
+          "title": "Настройка кластера Kubernetes",
+          "description": "Развернуть production-кластер: 3 master nodes, 5 worker nodes. Настроить network policies, RBAC, pod security standards. Интегрировать с cloud provider load balancers.",
+          "priority": "High",
+          "status": "Done",
+          "assigneeId": 7,
+          "createdAt": "2026-02-20T08:00:00.000Z",
+          "updatedAt": "2026-03-10T17:00:00.000Z"
+        },
+        {
+          "id": 27,
+          "title": "Реализация Helm-чартов",
+          "description": "Разработать параметризованные Helm charts для всех сервисов. Реализовать values для environments: dev, staging, prod. Настроить helmfile для деплоя стека сервисов.",
+          "priority": "Medium",
+          "status": "InProgress",
+          "assigneeId": 1,
+          "createdAt": "2026-03-05T10:00:00.000Z",
+          "updatedAt": "2026-03-17T15:30:00.000Z"
+        },
+        {
+          "id": 28,
+          "title": "Настройка мониторинга",
+          "description": "Развернуть Prometheus + Grafana stack, настроить сбор метрик через kube-prometheus, создать дашборды: cluster health, pods resources, application metrics.",
+          "priority": "Medium",
+          "status": "Done",
+          "assigneeId": 2,
+          "createdAt": "2026-03-01T11:30:00.000Z",
+          "updatedAt": "2026-03-12T14:00:00.000Z"
+        },
+        {
+          "id": 29,
+          "title": "Конфигурация ingress-контроллеров",
+          "description": "Настроить NGINX Ingress Controller с TLS termination через cert-manager, реализовать canary deployments через ingress annotations, настроить rate limiting.",
+          "priority": "Medium",
+          "status": "InProgress",
+          "assigneeId": 3,
+          "createdAt": "2026-03-08T09:15:00.000Z",
+          "updatedAt": "2026-03-18T11:45:00.000Z"
+        },
+        {
+          "id": 30,
+          "title": "Автоматизация деплоя",
+          "description": "Внедрить GitOps через ArgoCD, настроить progressive delivery (blue-green/canary), реализовать автоматический rollback при превышении error rate threshold.",
+          "priority": "High",
+          "status": "Backlog",
+          "assigneeId": 4,
+          "createdAt": "2026-03-12T14:00:00.000Z",
+          "updatedAt": "2026-03-12T14:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}
